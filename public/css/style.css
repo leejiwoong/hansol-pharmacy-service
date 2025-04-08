@@ -1,0 +1,166 @@
+/* 전역 스타일 */
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  color: #333;
+  background-color: #f8f9fa;
+}
+
+/* 헤더 스타일 */
+.navbar-brand img {
+  margin-right: 10px;
+}
+
+/* 푸터 스타일 */
+footer {
+  border-top: 1px solid #dee2e6;
+  margin-top: 2rem;
+}
+
+/* 카드 스타일 */
+.card {
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  border: none;
+  margin-bottom: 1.5rem;
+}
+
+.card-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+  font-weight: 500;
+}
+
+/* 버튼 스타일 */
+.btn-primary {
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+}
+
+.btn-success {
+  background-color: #198754;
+  border-color: #198754;
+}
+
+.btn-info {
+  background-color: #0dcaf0;
+  border-color: #0dcaf0;
+}
+
+.btn-warning {
+  background-color: #ffc107;
+  border-color: #ffc107;
+}
+
+/* 테이블 스타일 */
+.table-hover tbody tr:hover {
+  background-color: rgba(13, 110, 253, 0.05);
+}
+
+/* 폼 스타일 */
+.form-control:focus, .form-select:focus {
+  border-color: #86b7fe;
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+/* 뱃지 스타일 */
+.badge {
+  font-weight: 500;
+  padding: 0.35em 0.65em;
+}
+
+/* 알림톡 메시지 스타일 */
+.alimtalk-message {
+  background-color: #f8f9fa;
+  border-left: 4px solid #ffc107;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 4px;
+}
+
+.alimtalk-message-header {
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #495057;
+}
+
+.alimtalk-message-content {
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  padding: 10px;
+}
+
+/* 처방전 이미지 스타일 */
+.prescription-image {
+  max-width: 100%;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+/* 반응형 조정 */
+@media (max-width: 768px) {
+  .display-4 {
+    font-size: 2.5rem;
+  }
+  .lead {
+    font-size: 1rem;
+  }
+}
+
+/* 상태 흐름 스타일 */
+.status-flow {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.status-flow-item {
+  flex: 1;
+  text-align: center;
+  padding: 10px;
+  position: relative;
+}
+
+.status-flow-item::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: #dee2e6;
+  top: 50%;
+  left: 50%;
+  z-index: -1;
+}
+
+.status-flow-item:last-child::after {
+  display: none;
+}
+
+.status-flow-item.active {
+  font-weight: bold;
+  color: #0d6efd;
+}
+
+.status-flow-icon {
+  display: inline-flex;
+  width: 40px;
+  height: 40px;
+  background-color: #fff;
+  border: 2px solid #dee2e6;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.status-flow-item.active .status-flow-icon {
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+  color: #fff;
+}
+
+.status-flow-item.completed .status-flow-icon {
+  background-color: #198754;
+  border-color: #198754;
+  color: #fff;
+}

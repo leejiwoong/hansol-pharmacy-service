@@ -1,0 +1,140 @@
+<div class="row">
+  <div class="col-md-12">
+    <h2>처방전 수거 요청</h2>
+    <p class="lead">처방전 수거가 필요하신가요? 아래 양식을 작성하여 요청해 주세요.</p>
+    <hr>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-7">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">수거 요청 양식</h4>
+        <p class="card-text">처방전 수거 요청을 하시면, 담당자에게 알림톡이 발송됩니다. 담당자가 방문 일정을 알림톡으로 안내해 드립니다.</p>
+        
+        <form id="pickupRequestForm">
+          <div class="mb-3">
+            <label for="notes" class="form-label">추가 요청사항 (선택)</label>
+            <textarea class="form-control" id="notes" name="notes" rows="4" placeholder="처방전 수량, 특이사항, 선호하는 방문 시간 등 추가 요청사항을 입력해 주세요."></textarea>
+          </div>
+          
+          <div class="d-grid">
+            <button type="submit" class="btn btn-primary">수거 요청하기</button>
+          </div>
+        </form>
+        
+        <div id="requestSuccess" class="alert alert-success mt-3" style="display: none;">
+          처방전 수거 요청이 성공적으로 접수되었습니다. 빠른 시일 내에 담당자가 방문 일정을 알림톡으로 안내해 드립니다.
+        </div>
+        
+        <div id="requestError" class="alert alert-danger mt-3" style="display: none;">
+          요청 처리 중 오류가 발생했습니다. 다시 시도해 주세요.
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="col-md-5">
+    <div class="card mb-4">
+      <div class="card-header bg-primary text-white">
+        <h5 class="mb-0">수거 프로세스 안내</h5>
+      </div>
+      <div class="card-body">
+        <ol class="list-group list-group-numbered mb-0">
+          <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+              <div class="fw-bold">수거 요청 접수</div>
+              약국에서 처방전 수거 요청 버튼 클릭
+            </div>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+              <div class="fw-bold">담당자 알림톡 발송</div>
+              담당자에게 수거 요청 사항 발송
+            </div>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+              <div class="fw-bold">방문 일정 안내</div>
+              담당자가 알림톡으로 방문 일정 안내
+            </div>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+              <div class="fw-bold">처방전 수거</div>
+              약속된 일정에 담당자 방문 및 처방전 수거
+            </div>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+              <div class="fw-bold">보관 완료</div>
+              처방전 박스 단위로 관리 및 보관
+            </div>
+          </li>
+        </ol>
+      </div>
+    </div>
+    
+    <div class="card">
+      <div class="card-header bg-info text-white">
+        <h5 class="mb-0">안내사항</h5>
+      </div>
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <i class="bi bi-info-circle-fill text-primary me-2"></i>
+            처방전 수거는 영업일 기준 1-2일 이내에 방문합니다.
+          </li>
+          <li class="list-group-item">
+            <i class="bi bi-info-circle-fill text-primary me-2"></i>
+            1박스당 약 3,000장의 처방전이 보관됩니다.
+          </li>
+          <li class="list-group-item">
+            <i class="bi bi-info-circle-fill text-primary me-2"></i>
+            처방전 보관 시작일과 마지막일을 기록하여 관리합니다.
+          </li>
+          <li class="list-group-item">
+            <i class="bi bi-info-circle-fill text-primary me-2"></i>
+            방문 일정 변경이 필요한 경우 문의 전화로 연락 바랍니다.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.getElementById('pickupRequestForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    
+    const notes = document.getElementById('notes').value;
+    
+    // API 요청
+    fetch('/pharmacy/request-pickup', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ notes })
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.message.includes('성공')) {
+        document.getElementById('requestSuccess').style.display = 'block';
+        document.getElementById('requestError').style.display = 'none';
+        this.reset();
+      } else {
+        document.getElementById('requestError').style.display = 'block';
+        document.getElementById('requestSuccess').style.display = 'none';
+        document.getElementById('requestError').textContent = data.message;
+      }
+    })
+    .catch(error => {
+      console.error('수거 요청 오류:', error);
+      document.getElementById('requestError').style.display = 'block';
+      document.getElementById('requestSuccess').style.display = 'none';
+      document.getElementById('requestError').textContent = '요청 처리 중 오류가 발생했습니다. 다시 시도해 주세요.';
+    });
+  });
+</script>
