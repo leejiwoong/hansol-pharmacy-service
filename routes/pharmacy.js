@@ -117,4 +117,25 @@ router.get('/requests/:requestId', checkPharmacyAuth, (req, res) => {
   });
 });
 
+// 약국 로그인 페이지
+router.get('/login', (req, res) => {
+  res.render('pharmacy/login', { title: '약국 로그인' });
+});
+
+// 약국 회원가입 페이지
+router.get('/register', (req, res) => {
+  res.render('pharmacy/register', { title: '약국 회원가입' });
+});
+
+// 약국 회원가입 처리
+router.post('/register', async (req, res) => {
+  try {
+    // 회원가입 로직 구현
+    res.json({ success: true, message: '회원가입이 완료되었습니다.' });
+  } catch (error) {
+    console.error('회원가입 오류:', error);
+    res.status(500).json({ success: false, message: '회원가입 중 오류가 발생했습니다.' });
+  }
+});
+
 module.exports = router;
