@@ -1,0 +1,127 @@
+<%- include('../partials/header') %>
+
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header bg-success text-white">
+          <h4 class="mb-0">약국 회원가입</h4>
+        </div>
+        <div class="card-body">
+          <form id="pharmacyRegisterForm" class="needs-validation" novalidate>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label for="pharmacyName" class="form-label">약국명 *</label>
+                <input type="text" class="form-control" id="pharmacyName" name="pharmacyName" required>
+                <div class="invalid-feedback">약국명을 입력해주세요.</div>
+              </div>
+              
+              <div class="col-md-6">
+                <label for="licenseNumber" class="form-label">약국 등록번호 *</label>
+                <input type="text" class="form-control" id="licenseNumber" name="licenseNumber" required>
+                <div class="invalid-feedback">약국 등록번호를 입력해주세요.</div>
+              </div>
+              
+              <div class="col-12">
+                <label for="address" class="form-label">주소 *</label>
+                <div class="input-group mb-2">
+                  <input type="text" class="form-control" id="address" name="address" required readonly>
+                  <button class="btn btn-outline-secondary" type="button" onclick="searchAddress()">주소 검색</button>
+                </div>
+                <input type="text" class="form-control" id="addressDetail" name="addressDetail" placeholder="상세주소">
+              </div>
+              
+              <div class="col-md-6">
+                <label for="phoneNumber" class="form-label">전화번호 *</label>
+                <input type="tel" class="form-control" id="phoneNumber" name="phoneNumber" required pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}">
+                <div class="invalid-feedback">올바른 전화번호 형식으로 입력해주세요.</div>
+              </div>
+              
+              <div class="col-md-6">
+                <label for="email" class="form-label">이메일</label>
+                <input type="email" class="form-control" id="email" name="email">
+                <div class="invalid-feedback">올바른 이메일 형식으로 입력해주세요.</div>
+              </div>
+              
+              <div class="col-md-6">
+                <label for="username" class="form-label">아이디 *</label>
+                <input type="text" class="form-control" id="username" name="username" required minlength="4">
+                <div class="invalid-feedback">4자 이상의 아이디를 입력해주세요.</div>
+              </div>
+              
+              <div class="col-md-6">
+                <label for="password" class="form-label">비밀번호 *</label>
+                <input type="password" class="form-control" id="password" name="password" required minlength="8">
+                <div class="invalid-feedback">8자 이상의 비밀번호를 입력해주세요.</div>
+              </div>
+              
+              <div class="col-12">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="termsAgreement" required>
+                  <label class="form-check-label" for="termsAgreement">
+                    서비스 이용약관 및 개인정보 처리방침에 동의합니다. *
+                  </label>
+                  <div class="invalid-feedback">약관에 동의해주세요.</div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="d-grid gap-2 mt-4">
+              <button class="btn btn-success" type="submit">회원가입</button>
+              <a href="/pharmacy/login" class="btn btn-outline-secondary">이미 계정이 있으신가요? 로그인</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+function searchAddress() {
+  new daum.Postcode({
+    oncomplete: function(data) {
+      document.getElementById('address').value = data.address;
+      document.getElementById('addressDetail').focus();
+    }
+  }).open();
+}
+
+document.getElementById('pharmacyRegisterForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  
+  if (!this.checkValidity()) {
+    e.stopPropagation();
+    this.classList.add('was-validated');
+    return;
+  }
+  
+  const formData = new FormData(this);
+  const data = Object.fromEntries(formData.entries());
+  
+  try {
+    const response = await fetch('/api/pharmacy/register', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+    
+    const result = await response.json();
+    
+    if (response.ok) {
+      alert('회원가입이 완료되었습니다. 로그인 페이지로 이동합니다.');
+      window.location.href = '/pharmacy/login';
+    } else {
+      alert(result.message || '회원가입 중 오류가 발생했습니다.');
+    }
+  } catch (error) {
+    console.error('회원가입 오류:', error);
+    alert('회원가입 중 오류가 발생했습니다. 다시 시도해 주세요.');
+  }
+});
+</script>
+
+<%- include('../partials/footer') %> 

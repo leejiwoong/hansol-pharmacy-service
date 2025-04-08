@@ -14,16 +14,27 @@
         <form id="adminLoginForm">
           <div class="mb-3">
             <label for="username" class="form-label">사용자명</label>
-            <input type="text" class="form-control" id="username" name="username" required>
+            <input type="text" class="form-control" id="username" name="username" required autocomplete="username">
           </div>
           
           <div class="mb-3">
             <label for="password" class="form-label">비밀번호</label>
-            <input type="password" class="form-control" id="password" name="password" required>
+            <div class="input-group">
+              <input type="password" class="form-control" id="password" name="password" required autocomplete="current-password">
+              <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                <i class="bi bi-eye"></i>
+              </button>
+            </div>
           </div>
           
-          <div class="d-grid">
+          <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="rememberMe" name="rememberMe">
+            <label class="form-check-label" for="rememberMe">아이디 저장</label>
+          </div>
+          
+          <div class="d-grid gap-2">
             <button type="submit" class="btn btn-success">로그인</button>
+            <a href="/admin/register" class="btn btn-outline-success">회원가입</a>
           </div>
         </form>
         
