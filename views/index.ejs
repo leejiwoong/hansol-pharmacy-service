@@ -44,11 +44,19 @@
             border-radius: 12px;
             padding: 2rem;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        .hospital-image {
-            width: 100%;
-            max-width: 500px;
             margin-bottom: 2rem;
+        }
+        .feature-icon-section {
+            margin-top: 3rem;
+        }
+        .feature-icon-section .card {
+            border: none;
+            background: transparent;
+        }
+        @media (max-width: 991px) {
+            .main-content {
+                order: -1;
+            }
         }
     </style>
 </head>
@@ -61,39 +69,10 @@
 
     <div class="container mt-5">
         <div class="row">
-            <div class="col-lg-6">
-                <img src="/images/hospital.jpg" alt="병원 이미지" class="hospital-image">
-                <div class="row">
-                    <div class="col-md-4 mb-4">
-                        <div class="card h-100">
-                            <div class="card-body text-center">
-                                <i class="bi bi-box-seam display-4 text-primary mb-3"></i>
-                                <h5 class="card-title">간편한 처방전 수거</h5>
-                                <p class="card-text">약국에서 처방전 수거 요청 버튼만 클릭하면 담당자가 직접 방문하여 수거합니다.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-4">
-                        <div class="card h-100">
-                            <div class="card-body text-center">
-                                <i class="bi bi-shield-check display-4 text-primary mb-3"></i>
-                                <h5 class="card-title">안전한 보관</h5>
-                                <p class="card-text">보안이 철저한 시설에서 처방전을 안전하게 보관하며, 체계적인 관리 시스템으로 분실 위험이 없습니다.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-4">
-                        <div class="card h-100">
-                            <div class="card-body text-center">
-                                <i class="bi bi-search display-4 text-primary mb-3"></i>
-                                <h5 class="card-title">빠른 처방전 검색</h5>
-                                <p class="card-text">필요한 처방전이 있을 때 간편하게 검색 요청하면 담당자가 신속하게 찾아 이미지로 제공합니다.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="col-lg-6 d-none d-lg-block">
+                <img src="main.jpg" alt="메인 이미지" class="img-fluid mb-4">
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-6 main-content">
                 <div class="ps-lg-5">
                     <h1 class="main-title">처방전 관리,<br>이제 더 쉽게 시작하세요</h1>
                     <p class="sub-title">번거로운 처방전 관리 없이 편하게,</p>
@@ -111,6 +90,38 @@
                             <a href="/pharmacy/login" class="btn btn-primary btn-lg">약국 로그인</a>
                             <a href="/pharmacy/register" class="btn btn-outline-primary">회원가입</a>
                             <p class="text-center text-muted small mt-2">아직 회원이 아니신가요? 지금 바로 가입하세요!</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-icon-section">
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <div class="card text-center">
+                                    <div class="card-body">
+                                        <i class="bi bi-box-seam display-4 text-primary mb-3"></i>
+                                        <h6 class="card-title">간편한 처방전 수거</h6>
+                                        <p class="card-text small">약국에서 처방전 수거 요청 버튼만 클릭하면 담당자가 직접 방문합니다.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card text-center">
+                                    <div class="card-body">
+                                        <i class="bi bi-shield-check display-4 text-primary mb-3"></i>
+                                        <h6 class="card-title">안전한 보관</h6>
+                                        <p class="card-text small">보안이 철저한 시설에서 처방전을 안전하게 보관합니다.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card text-center">
+                                    <div class="card-body">
+                                        <i class="bi bi-search display-4 text-primary mb-3"></i>
+                                        <h6 class="card-title">빠른 처방전 검색</h6>
+                                        <p class="card-text small">필요한 처방전을 신속하게 찾아 이미지로 제공합니다.</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
