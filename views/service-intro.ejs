@@ -1,0 +1,97 @@
+<%- include('partials/header') %>
+
+<div class="container my-5">
+  <h1 class="text-center mb-5">한솔제약 처방전 보관 서비스 소개</h1>
+  
+  <div class="row g-4">
+    <div class="col-md-4">
+      <div class="card h-100">
+        <div class="card-body text-center">
+          <i class="bi bi-box-seam display-4 text-success mb-3"></i>
+          <h3 class="card-title">간편한 처방전 수거</h3>
+          <p class="card-text">버튼 클릭 한 번으로 처방전 수거를 요청하세요. 전문 담당자가 직접 방문하여 안전하게 수거합니다.</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-4">
+      <div class="card h-100">
+        <div class="card-body text-center">
+          <i class="bi bi-shield-check display-4 text-success mb-3"></i>
+          <h3 class="card-title">안전한 보관</h3>
+          <p class="card-text">최신 보안 시설과 체계적인 관리 시스템으로 처방전을 안전하게 보관합니다.</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-4">
+      <div class="card h-100">
+        <div class="card-body text-center">
+          <i class="bi bi-search display-4 text-success mb-3"></i>
+          <h3 class="card-title">빠른 검색</h3>
+          <p class="card-text">필요한 처방전을 요청하면 즉시 찾아서 이미지로 제공해 드립니다.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row mt-5">
+    <div class="col-md-8 offset-md-2">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title text-center mb-4">서비스 이용 방법</h4>
+          <div class="timeline">
+            <div class="timeline-item">
+              <h5>1. 회원가입</h5>
+              <p>약국 정보를 입력하여 간단히 회원가입을 완료하세요.</p>
+            </div>
+            <div class="timeline-item">
+              <h5>2. 처방전 수거 요청</h5>
+              <p>보관이 필요한 처방전이 있다면 수거 요청을 해주세요.</p>
+            </div>
+            <div class="timeline-item">
+              <h5>3. 안전한 보관</h5>
+              <p>수거된 처방전은 안전한 시설에서 체계적으로 보관됩니다.</p>
+            </div>
+            <div class="timeline-item">
+              <h5>4. 필요할 때 검색</h5>
+              <p>보관된 처방전이 필요할 때 검색 요청을 하시면 됩니다.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="text-center mt-5">
+    <a href="/pharmacy/register" class="btn btn-success btn-lg">지금 시작하기</a>
+  </div>
+</div>
+
+<style>
+.timeline {
+  position: relative;
+  padding: 20px 0;
+}
+
+.timeline-item {
+  padding: 20px 0;
+  border-left: 2px solid #198754;
+  margin-left: 20px;
+  padding-left: 20px;
+  position: relative;
+}
+
+.timeline-item:before {
+  content: '';
+  position: absolute;
+  left: -8px;
+  top: 24px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #198754;
+}
+</style>
+
+<%- include('partials/footer') %> 

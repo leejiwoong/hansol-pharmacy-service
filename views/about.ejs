@@ -1,0 +1,84 @@
+<%- include('layouts/main', { title: title }) %>
+
+<% function body() { %>
+  <div class="row">
+    <div class="col-md-12">
+      <h2>서비스 소개</h2>
+      <hr>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-md-8">
+      <h3>한솔제약 처방전 보관 서비스란?</h3>
+      <p>한솔제약 처방전 보관 서비스는 약국의 처방전 관리를 효율적으로 돕는 전문 서비스입니다. 처방전 수거부터 안전한 보관, 필요시 신속한 검색까지 모든 과정을 체계적으로 관리합니다.</p>
+      
+      <h4 class="mt-4">서비스 특징</h4>
+      <ul>
+        <li><strong>편리한 수거 시스템</strong>: 약국에서 처방전 수거 요청 버튼만 클릭하면 담당자가 직접 방문하여 수거합니다.</li>
+        <li><strong>안전한 보관</strong>: 1박스당 3,000여장의 처방전을 체계적으로 관리하며, 철저한 보안 시설에서 보관합니다.</li>
+        <li><strong>빠른 검색 서비스</strong>: 필요한 처방전이 있을 때 고객(환자) 정보만 입력하면 담당자가 신속하게 찾아 이미지로 제공합니다.</li>
+        <li><strong>편리한 알림톡 시스템</strong>: 모든 과정은 알림톡을 통해 실시간으로 소통하여 편리하게 이용할 수 있습니다.</li>
+      </ul>
+      
+      <h4 class="mt-4">이용 절차</h4>
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5>처방전 수거 서비스</h5>
+          <ol>
+            <li>약국에서 처방전 수거 요청 버튼 클릭</li>
+            <li>담당자에게 알림톡 발송</li>
+            <li>담당자가 알림톡을 통해 방문 일정 안내</li>
+            <li>방문 당일 처방전 수거</li>
+            <li>처방전 박스 단위로 관리 (시작일, 마지막일 기록)</li>
+          </ol>
+        </div>
+      </div>
+      
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5>처방전 검색 서비스</h5>
+          <ol>
+            <li>약국에서 고객(환자) 정보 입력 후 검색 요청</li>
+            <li>담당자에게 알림톡 발송</li>
+            <li>담당자가 처방전 검색 후 이미지 촬영</li>
+            <li>알림톡을 통해 이미지 전송</li>
+            <li>약국에서 처방전 이미지 확인</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-header bg-primary text-white">
+          <h5 class="mb-0">서비스 이용 안내</h5>
+        </div>
+        <div class="card-body">
+          <p><strong>이용 대상:</strong> 처방전 관리가 필요한 모든 약국</p>
+          <p><strong>서비스 지역:</strong> 서울 및 수도권 지역</p>
+          <p><strong>처방전 보관 기간:</strong> 법정 보관 기간(5년) 준수</p>
+          <p><strong>비용:</strong> 박스 단위 계약, 상세 문의 필요</p>
+          <hr>
+          <p class="mb-0">서비스 이용에 관한 자세한 사항은 문의하기를 통해 문의해 주세요.</p>
+          <a href="/contact" class="btn btn-primary mt-3 w-100">문의하기</a>
+        </div>
+      </div>
+      
+      <div class="card mt-4">
+        <div class="card-header bg-success text-white">
+          <h5 class="mb-0">고객 만족도</h5>
+        </div>
+        <div class="card-body text-center">
+          <div class="display-4 mb-2">98%</div>
+          <p>사용 약국의 만족도</p>
+          <hr>
+          <p class="fst-italic">"한솔제약 처방전 보관 서비스 이용 후 공간 활용도 높아지고, 처방전 관리가 훨씬 편리해졌습니다."</p>
+          <p class="text-end">- 서울 강남구 OO약국</p>
+        </div>
+      </div>
+    </div>
+  </div>
+<% } %>
+
+<%- body() %>

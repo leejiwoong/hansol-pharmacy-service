@@ -1,0 +1,277 @@
+<div class="row">
+  <div class="col-md-12">
+    <h2>요청 목록</h2>
+    <p class="lead">이전에 요청한 처방전 수거 및 검색 요청 내역을 확인하세요.</p>
+    <hr>
+  </div>
+</div>
+
+<div class="row mb-4">
+  <div class="col-md-12">
+    <ul class="nav nav-tabs" id="requestsTabs" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="pickup-tab" data-bs-toggle="tab" data-bs-target="#pickup" type="button" role="tab" aria-controls="pickup" aria-selected="true">
+          처방전 수거 요청
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="search-tab" data-bs-toggle="tab" data-bs-target="#search" type="button" role="tab" aria-controls="search" aria-selected="false">
+          처방전 검색 요청
+        </button>
+      </li>
+    </ul>
+    
+    <div class="tab-content" id="requestsTabsContent">
+      <!-- 처방전 수거 요청 탭 -->
+      <div class="tab-pane fade show active" id="pickup" role="tabpanel" aria-labelledby="pickup-tab">
+        <div class="card border-top-0 rounded-top-0">
+          <div class="card-body">
+            <div class="d-flex justify-content-between mb-3">
+              <h5>처방전 수거 요청 목록</h5>
+              <div>
+                <select id="pickupStatusFilter" class="form-select form-select-sm">
+                  <option value="all">모든 상태</option>
+                  <option value="requested">요청됨</option>
+                  <option value="scheduled">방문 예정</option>
+                  <option value="completed">완료</option>
+                  <option value="cancelled">취소됨</option>
+                </select>
+              </div>
+            </div>
+            
+            <div id="pickupRequests" class="table-responsive">
+              <div class="text-center py-5">
+                <div class="spinner-border text-primary" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+                <p class="mt-2">요청 내역을 불러오는 중...</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 처방전 검색 요청 탭 -->
+      <div class="tab-pane fade" id="search" role="tabpanel" aria-labelledby="search-tab">
+        <div class="card border-top-0 rounded-top-0">
+          <div class="card-body">
+            <div class="d-flex justify-content-between mb-3">
+              <h5>처방전 검색 요청 목록</h5>
+              <div>
+                <select id="searchStatusFilter" class="form-select form-select-sm">
+                  <option value="all">모든 상태</option>
+                  <option value="requested">요청됨</option>
+                  <option value="processing">처리 중</option>
+                  <option value="completed">완료</option>
+                  <option value="not_found">미발견</option>
+                </select>
+              </div>
+            </div>
+            
+            <div id="searchRequests" class="table-responsive">
+              <div class="text-center py-5">
+                <div class="spinner-border text-primary" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+                <p class="mt-2">요청 내역을 불러오는 중...</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // 요청 목록 가져오기
+  function fetchRequests() {
+    fetch('/pharmacy/api/requests')
+      .then(response => response.json())
+      .then(data => {
+        renderPickupRequests(data.pickupRequests);
+        renderSearchRequests(data.searchRequests);
+      })
+      .catch(error => {
+        console.error('요청 내역 조회 에러:', error);
+        document.getElementById('pickupRequests').innerHTML = '<p class="text-center py-3 text-danger">요청 내역을 불러오는 중 오류가 발생했습니다.</p>';
+        document.getElementById('searchRequests').innerHTML = '<p class="text-center py-3 text-danger">요청 내역을 불러오는 중 오류가 발생했습니다.</p>';
+      });
+  }
+  
+  // 수거 요청 렌더링
+  function renderPickupRequests(requests, filterStatus = 'all') {
+    const container = document.getElementById('pickupRequests');
+    
+    if (!requests || requests.length === 0) {
+      container.innerHTML = '<p class="text-center py-3">처방전 수거 요청 내역이 없습니다.</p>';
+      return;
+    }
+    
+    // 상태 필터링
+    if (filterStatus !== 'all') {
+      requests = requests.filter(req => req.status === filterStatus);
+      
+      if (requests.length === 0) {
+        container.innerHTML = '<p class="text-center py-3">해당 상태의 요청 내역이 없습니다.</p>';
+        return;
+      }
+    }
+    
+    let html = `
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>요청일</th>
+            <th>상태</th>
+            <th>방문 예정일</th>
+            <th>담당자</th>
+            <th>완료일</th>
+            <th>상세</th>
+          </tr>
+        </thead>
+        <tbody>
+    `;
+    
+    requests.forEach(request => {
+      const requestDate = new Date(request.requestDate).toLocaleDateString('ko-KR');
+      const expectedVisitDate = request.expectedVisitDate ? new Date(request.expectedVisitDate).toLocaleDateString('ko-KR') : '-';
+      const completedDate = request.completedDate ? new Date(request.completedDate).toLocaleDateString('ko-KR') : '-';
+      
+      let statusBadge = '';
+      switch (request.status) {
+        case 'requested':
+          statusBadge = '<span class="badge bg-warning">요청됨</span>';
+          break;
+        case 'scheduled':
+          statusBadge = '<span class="badge bg-info">방문 예정</span>';
+          break;
+        case 'completed':
+          statusBadge = '<span class="badge bg-success">완료</span>';
+          break;
+        case 'cancelled':
+          statusBadge = '<span class="badge bg-danger">취소됨</span>';
+          break;
+        default:
+          statusBadge = '<span class="badge bg-secondary">진행 중</span>';
+      }
+      
+      html += `
+        <tr>
+          <td>${requestDate}</td>
+          <td>${statusBadge}</td>
+          <td>${expectedVisitDate}</td>
+          <td>${request.staffAssigned || '-'}</td>
+          <td>${completedDate}</td>
+          <td>
+            <a href="/pharmacy/requests/${request._id}?type=pickup" class="btn btn-sm btn-outline-primary">
+              <i class="bi bi-eye"></i> 보기
+            </a>
+          </td>
+        </tr>
+      `;
+    });
+    
+    html += '</tbody></table>';
+    container.innerHTML = html;
+  }
+  
+  // 검색 요청 렌더링
+  function renderSearchRequests(requests, filterStatus = 'all') {
+    const container = document.getElementById('searchRequests');
+    
+    if (!requests || requests.length === 0) {
+      container.innerHTML = '<p class="text-center py-3">처방전 검색 요청 내역이 없습니다.</p>';
+      return;
+    }
+    
+    // 상태 필터링
+    if (filterStatus !== 'all') {
+      requests = requests.filter(req => req.status === filterStatus);
+      
+      if (requests.length === 0) {
+        container.innerHTML = '<p class="text-center py-3">해당 상태의 요청 내역이 없습니다.</p>';
+        return;
+      }
+    }
+    
+    let html = `
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>요청일</th>
+            <th>환자명</th>
+            <th>상태</th>
+            <th>처방일</th>
+            <th>담당자</th>
+            <th>응답일</th>
+            <th>상세</th>
+          </tr>
+        </thead>
+        <tbody>
+    `;
+    
+    requests.forEach(request => {
+      const requestDate = new Date(request.requestDate).toLocaleDateString('ko-KR');
+      const prescriptionDate = request.prescriptionDate ? new Date(request.prescriptionDate).toLocaleDateString('ko-KR') : '-';
+      const responseDate = request.responseDate ? new Date(request.responseDate).toLocaleDateString('ko-KR') : '-';
+      
+      let statusBadge = '';
+      switch (request.status) {
+        case 'requested':
+          statusBadge = '<span class="badge bg-warning">요청됨</span>';
+          break;
+        case 'processing':
+          statusBadge = '<span class="badge bg-info">처리 중</span>';
+          break;
+        case 'completed':
+          statusBadge = '<span class="badge bg-success">완료</span>';
+          break;
+        case 'not_found':
+          statusBadge = '<span class="badge bg-danger">미발견</span>';
+          break;
+        default:
+          statusBadge = '<span class="badge bg-secondary">진행 중</span>';
+      }
+      
+      html += `
+        <tr>
+          <td>${requestDate}</td>
+          <td>${request.patientName}</td>
+          <td>${statusBadge}</td>
+          <td>${prescriptionDate}</td>
+          <td>${request.staffAssigned || '-'}</td>
+          <td>${responseDate}</td>
+          <td>
+            <a href="/pharmacy/requests/${request._id}?type=search" class="btn btn-sm btn-outline-primary">
+              <i class="bi bi-eye"></i> 보기
+            </a>
+          </td>
+        </tr>
+      `;
+    });
+    
+    html += '</tbody></table>';
+    container.innerHTML = html;
+  }
+  
+  // 상태 필터 이벤트 리스너
+  document.getElementById('pickupStatusFilter').addEventListener('change', function() {
+    fetch('/pharmacy/api/requests')
+      .then(response => response.json())
+      .then(data => {
+        renderPickupRequests(data.pickupRequests, this.value);
+      });
+  });
+  
+  document.getElementById('searchStatusFilter').addEventListener('change', function() {
+    fetch('/pharmacy/api/requests')
+      .then(response => response.json())
+      .then(data => {
+        renderSearchRequests(data.searchRequests, this.value);
+      });
+  });
+  
+  // 페이지 로드 시 요청 내역 가져오기
+  document.addEventListener('DOMContentLoaded', fetchRequests);
+</script>

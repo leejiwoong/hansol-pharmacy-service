@@ -1,0 +1,35 @@
+name: 한솔제약 처방전 서비스 자동 배포
+
+# main 브랜치에 변경사항이 push될 때 실행
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 코드 체크아웃
+      uses: actions/checkout@v3
+
+    - name: Node.js 설정
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16.x'
+        cache: 'npm'
+
+    - name: 의존성 설치
+      run: npm ci
+
+    - name: 테스트 실행
+      run: npm test
+      
+    # Railway CLI 설치 및 배포
+    - name: Railway CLI 설치
+      run: npm install -g @railway/cli
+
+    - name: Railway 배포
+      run: railway up
+      env:
+        RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }} 
