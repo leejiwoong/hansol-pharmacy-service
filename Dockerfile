@@ -17,5 +17,9 @@ COPY . .
 # 환경 변수 설정
 ENV NODE_ENV=production
 
+# 시작 스크립트 생성
+RUN echo "#!/bin/sh\necho \"Checking environment variables:\"\necho \"MONGODB_URI: \${MONGODB_URI:-not set}\"\necho \"Starting application...\"\nexec npm start" > /app/start.sh && \
+    chmod +x /app/start.sh
+
 # 앱 실행
-CMD ["npm", "start"] 
+CMD ["/app/start.sh"] 
