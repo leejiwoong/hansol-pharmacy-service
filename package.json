@@ -6,7 +6,11 @@
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js",
+<<<<<<< HEAD
     "test": "echo \"테스트 통과!\" && exit 0"
+=======
+    "test": "echo \"Error: no test specified\" && exit 1"
+>>>>>>> b9f0456ea9b916259dea87bf012ef00d8822bc40
   },
   "keywords": [
     "pharmacy",
