@@ -111,8 +111,32 @@ app.use((err, req, res, next) => {
 
 // 서버 시작
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`서버가 포트 ${PORT}에서 실행 중입니다.`);
+})
+.on('error', (err) => {
+  console.error('서버 시작 실패:', err);
+  process.exit(1);
+});
+
+// 프로세스 종료 처리
+process.on('SIGTERM', () => {
+  console.log('SIGTERM 신호를 받았습니다. 서버를 종료합니다.');
+  server.close(() => {
+    console.log('서버가 종료되었습니다.');
+    mongoose.connection.close(false, () => {
+      console.log('MongoDB 연결이 종료되었습니다.');
+      process.exit(0);
+    });
+  });
+});
+
+process.on('uncaughtException', (err) => {
+  console.error('처리되지 않은 예외 발생:', err);
+  server.close(() => {
+    console.log('서버를 종료합니다.');
+    process.exit(1);
+  });
 });
 
 module.exports = app;
