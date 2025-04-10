@@ -3,7 +3,7 @@ const Pharmacy = require('../models/Pharmacy');
 const PickupRequest = require('../models/PickupRequest');
 const PrescriptionSearchRequest = require('../models/PrescriptionSearchRequest');
 const PrescriptionBox = require('../models/PrescriptionBox');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 // 관리자 로그인
 exports.login = async (req, res) => {

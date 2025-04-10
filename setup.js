@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 // 데이터베이스 연결
 mongoose.connect('mongodb://127.0.0.1:27017/hansol_pharmacy', {

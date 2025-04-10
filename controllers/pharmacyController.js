@@ -1,7 +1,7 @@
 const Pharmacy = require('../models/Pharmacy');
 const PickupRequest = require('../models/PickupRequest');
 const PrescriptionSearchRequest = require('../models/PrescriptionSearchRequest');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 // 약국 로그인
 exports.login = async (req, res) => {
