@@ -4,8 +4,7 @@
   "description": "한솔제약 처방전 보관 서비스",
   "main": "app.js",
   "scripts": {
-    "prebuild": "rm -rf node_modules && npm cache clean --force",
-    "build": "npm install",
+    "build": "npm ci --production",
     "start": "node app.js",
     "dev": "nodemon app.js",
     "test": "echo \"테스트 통과!\" && exit 0"
