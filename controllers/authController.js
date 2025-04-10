@@ -1,6 +1,6 @@
 // 로그인 및 인증 컨트롤러
 const Pharmacy = require('../models/Pharmacy');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 // 약국 로그인 처리
 exports.pharmacyLogin = async (req, res) => {
