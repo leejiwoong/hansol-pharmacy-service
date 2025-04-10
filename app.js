@@ -23,12 +23,41 @@ const apiRouter = require('./routes/api');
 const app = express();
 
 // 데이터베이스 연결
-mongoose.connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})
-.then(() => console.log('MongoDB에 연결되었습니다.'))
-.catch(err => console.error('MongoDB 연결 에러:', err));
+const connectDB = async () => {
+  try {
+    if (!process.env.MONGODB_URI) {
+      throw new Error('MONGODB_URI 환경 변수가 설정되지 않았습니다.');
+    }
+
+    console.log('MongoDB 연결 시도 중...');
+    console.log('MongoDB URI 확인:', process.env.MONGODB_URI.substring(0, 20) + '...');
+
+    await mongoose.connect(process.env.MONGODB_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      serverSelectionTimeoutMS: 5000 // 5초 후 타임아웃
+    });
+
+    console.log('MongoDB 연결 성공!');
+  } catch (err) {
+    console.error('MongoDB 연결 실패:', err.message);
+    console.error('상세 에러:', err);
+    process.exit(1); // 연결 실패 시 프로세스 종료
+  }
+};
+
+// 데이터베이스 연결 실행
+connectDB();
+
+// MongoDB 연결 이벤트 리스너
+mongoose.connection.on('error', err => {
+  console.error('MongoDB 에러 발생:', err);
+});
+
+mongoose.connection.on('disconnected', () => {
+  console.log('MongoDB 연결이 끊어졌습니다. 재연결 시도 중...');
+  connectDB();
+});
 
 // 뷰 엔진 설정
 app.set('views', path.join(__dirname, 'views'));
@@ -69,9 +98,13 @@ app.use((req, res, next) => {
 
 // 에러 핸들러
 app.use((err, req, res, next) => {
-  console.error(err);
-  res.status(err.status || 500).render('error', {
-    message: err.message,
+  console.error('에러 발생:', err);
+  console.error('에러 메시지:', err.message);
+  console.error('에러 스택:', err.stack);
+  
+  res.status(err.status || 500).json({
+    success: false,
+    message: process.env.NODE_ENV === 'development' ? err.message : '서버 에러가 발생했습니다.',
     error: process.env.NODE_ENV === 'development' ? err : {}
   });
 });

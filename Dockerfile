@@ -18,7 +18,17 @@ COPY . .
 ENV NODE_ENV=production
 
 # 시작 스크립트 생성
-RUN printf '#!/bin/sh\necho "Checking environment variables:"\necho "MONGODB_URI: $MONGODB_URI"\necho "Starting application..."\nnpm start\n' > /app/start.sh && \
+RUN printf '#!/bin/sh\n\
+echo "=== 환경 변수 확인 ==="\n\
+echo "NODE_ENV: $NODE_ENV"\n\
+if [ -z "$MONGODB_URI" ]; then\n\
+  echo "경고: MONGODB_URI가 설정되지 않았습니다!"\n\
+  echo "Railway 대시보드에서 MONGODB_URI 환경 변수를 설정해주세요."\n\
+else\n\
+  echo "MONGODB_URI: 설정됨 (보안상 전체 URI는 표시하지 않습니다)"\n\
+fi\n\
+echo "=== 애플리케이션 시작 ==="\n\
+npm start\n' > /app/start.sh && \
     chmod +x /app/start.sh
 
 # 앱 실행
