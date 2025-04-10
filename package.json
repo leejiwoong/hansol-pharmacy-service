@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js",
-    "test": "echo \"테스트 통과!\" && exit 0"
+    "test": "echo \"테스트 통과!\" && exit 0",
+    "postinstall": "npm rebuild bcrypt --build-from-source"
   },
   "keywords": [
     "pharmacy",
@@ -17,7 +18,7 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^1.4.0",
-    "bcrypt": "^5.1.1",
+    "bcrypt": "5.1.1",
     "body-parser": "^1.20.2",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
@@ -32,5 +33,8 @@
   },
   "devDependencies": {
     "nodemon": "^3.0.1"
+  },
+  "engines": {
+    "node": "18.x"
   }
 }
