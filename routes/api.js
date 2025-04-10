@@ -123,7 +123,7 @@ router.post('/pharmacy/register', async (req, res) => {
     } = req.body;
 
     // 필수 필드 검증
-    if (!pharmacyName || !address || !phoneNumber || !username || !password) {
+    if (!pharmacyName || !licenseNumber || !address || !phoneNumber || !email || !username || !password) {
       return res.status(400).json({
         success: false,
         message: '필수 항목을 모두 입력해주세요.'
@@ -156,9 +156,9 @@ router.post('/pharmacy/register', async (req, res) => {
       address: fullAddress,
       contactPerson: username,
       phoneNumber: phoneNumber,
-      email: email || `${username}@example.com`,
+      email: email,
       password: hashedPassword,
-      regNumber: licenseNumber || `TEMP-${Date.now()}`
+      regNumber: licenseNumber
     });
 
     await newPharmacy.save();
