@@ -2,6 +2,7 @@
   {
     "_id": "101",
     "pharmacy": "1",
+<<<<<<< HEAD
     "patientName": "류하늘",
     "patientId": "990826-2******",
     "prescriptionDate": "2024-09-01T07:31:57.841Z",
@@ -9,10 +10,23 @@
     "status": "requested",
     "notes": "",
     "updatedAt": "2025-03-31T05:39:09.146Z"
+=======
+    "patientName": "양지민",
+    "patientId": "960108-1******",
+    "prescriptionDate": "2024-11-09T13:07:22.449Z",
+    "requestDate": "2025-03-31T00:27:06.203Z",
+    "status": "completed",
+    "notes": "환자가 처방전 사본을 요청했습니다.",
+    "updatedAt": "2025-03-31T19:17:00.607Z",
+    "staffAssigned": "정담당자",
+    "responseDate": "2025-03-31T19:17:00.607Z",
+    "prescriptionImage": "/uploads/prescription_sample.jpg"
+>>>>>>> b9f0456ea9b916259dea87bf012ef00d8822bc40
   },
   {
     "_id": "102",
     "pharmacy": "1",
+<<<<<<< HEAD
     "patientName": "민경수",
     "patientId": "1040503-2******",
     "prescriptionDate": "2024-04-05T09:56:50.413Z",
@@ -21,10 +35,20 @@
     "notes": "",
     "updatedAt": "2025-03-14T03:57:07.493Z",
     "staffAssigned": "박직원"
+=======
+    "patientName": "임수진",
+    "patientId": "960702-1******",
+    "prescriptionDate": "2025-03-17T10:54:04.448Z",
+    "requestDate": "2025-03-26T20:02:44.743Z",
+    "status": "requested",
+    "notes": "특정 약품 용량 확인이 필요합니다.",
+    "updatedAt": "2025-03-26T20:17:44.743Z"
+>>>>>>> b9f0456ea9b916259dea87bf012ef00d8822bc40
   },
   {
     "_id": "103",
     "pharmacy": "1",
+<<<<<<< HEAD
     "patientName": "김재원",
     "patientId": "820325-2******",
     "prescriptionDate": "2024-04-13T16:10:11.898Z",
@@ -32,10 +56,23 @@
     "status": "requested",
     "notes": "",
     "updatedAt": "2025-04-04T18:18:58.478Z"
+=======
+    "patientName": "최지원",
+    "patientId": "900421-2******",
+    "prescriptionDate": "2024-11-12T20:54:34.290Z",
+    "requestDate": "2025-03-23T14:21:02.730Z",
+    "status": "completed",
+    "notes": "처방 내역 확인이 필요합니다.",
+    "updatedAt": "2025-03-23T23:08:35.255Z",
+    "staffAssigned": "최직원",
+    "responseDate": "2025-03-23T23:08:35.255Z",
+    "prescriptionImage": "/uploads/prescription_sample.jpg"
+>>>>>>> b9f0456ea9b916259dea87bf012ef00d8822bc40
   },
   {
     "_id": "104",
     "pharmacy": "1",
+<<<<<<< HEAD
     "patientName": "권영철",
     "patientId": "800717-2******",
     "prescriptionDate": "2024-09-27T14:52:09.648Z",
@@ -46,10 +83,21 @@
     "staffAssigned": "정담당자",
     "responseDate": "2025-03-28T13:50:57.523Z",
     "prescriptionImage": "/uploads/prescription_sample.jpg"
+=======
+    "patientName": "오은영",
+    "patientId": "980614-2******",
+    "prescriptionDate": "2025-02-25T17:54:03.433Z",
+    "requestDate": "2025-03-16T14:15:53.207Z",
+    "status": "processing",
+    "notes": "급하게 필요합니다.",
+    "updatedAt": "2025-03-16T14:30:53.207Z",
+    "staffAssigned": "정담당자"
+>>>>>>> b9f0456ea9b916259dea87bf012ef00d8822bc40
   },
   {
     "_id": "105",
     "pharmacy": "1",
+<<<<<<< HEAD
     "patientName": "이민영",
     "patientId": "1081005-2******",
     "prescriptionDate": "2024-11-26T11:25:58.274Z",
@@ -59,11 +107,23 @@
     "updatedAt": "2025-03-25T00:21:21.458Z",
     "staffAssigned": "이매니저",
     "responseDate": "2025-03-25T00:21:21.458Z",
+=======
+    "patientName": "오은영",
+    "patientId": "1080227-1******",
+    "prescriptionDate": "2024-06-16T00:18:13.566Z",
+    "requestDate": "2025-03-22T03:58:17.004Z",
+    "status": "completed",
+    "notes": "재발급 처리 필요합니다.",
+    "updatedAt": "2025-03-23T10:22:32.187Z",
+    "staffAssigned": "박직원",
+    "responseDate": "2025-03-23T10:22:32.187Z",
+>>>>>>> b9f0456ea9b916259dea87bf012ef00d8822bc40
     "prescriptionImage": "/uploads/prescription_sample.jpg"
   },
   {
     "_id": "106",
     "pharmacy": "1",
+<<<<<<< HEAD
     "patientName": "조수민",
     "patientId": "910524-2******",
     "prescriptionDate": "2024-04-15T14:02:12.998Z",
@@ -73,11 +133,23 @@
     "updatedAt": "2025-03-28T16:17:43.757Z",
     "staffAssigned": "이매니저",
     "responseDate": "2025-03-28T16:17:43.757Z",
+=======
+    "patientName": "박준영",
+    "patientId": "1021104-2******",
+    "prescriptionDate": "2024-05-31T23:45:19.283Z",
+    "requestDate": "2025-04-02T17:44:52.024Z",
+    "status": "completed",
+    "notes": "",
+    "updatedAt": "2025-04-03T09:28:40.073Z",
+    "staffAssigned": "정담당자",
+    "responseDate": "2025-04-03T09:28:40.073Z",
+>>>>>>> b9f0456ea9b916259dea87bf012ef00d8822bc40
     "prescriptionImage": "/uploads/prescription_sample.jpg"
   },
   {
     "_id": "107",
     "pharmacy": "1",
+<<<<<<< HEAD
     "patientName": "서진호",
     "patientId": "1070202-1******",
     "prescriptionDate": "2024-05-02T10:36:37.979Z",
@@ -86,10 +158,22 @@
     "notes": "진료확인서와 함께 필요합니다.",
     "updatedAt": "2025-03-25T17:24:07.887Z",
     "staffAssigned": "이매니저"
+=======
+    "patientName": "권영철",
+    "patientId": "1080208-1******",
+    "prescriptionDate": "2024-10-14T21:04:20.119Z",
+    "requestDate": "2025-03-12T12:37:22.952Z",
+    "status": "not_found",
+    "notes": "환자가 처방전 사본을 요청했습니다.",
+    "updatedAt": "2025-03-13T03:27:16.063Z",
+    "staffAssigned": "박직원",
+    "responseDate": "2025-03-13T03:27:16.063Z"
+>>>>>>> b9f0456ea9b916259dea87bf012ef00d8822bc40
   },
   {
     "_id": "108",
     "pharmacy": "1",
+<<<<<<< HEAD
     "patientName": "장준호",
     "patientId": "1010804-1******",
     "prescriptionDate": "2024-10-15T04:11:42.991Z",
@@ -97,10 +181,23 @@
     "status": "requested",
     "notes": "처방 내역 확인이 필요합니다.",
     "updatedAt": "2025-04-05T03:23:57.912Z"
+=======
+    "patientName": "최현준",
+    "patientId": "920105-1******",
+    "prescriptionDate": "2024-09-06T07:01:40.310Z",
+    "requestDate": "2025-04-02T19:14:08.213Z",
+    "status": "completed",
+    "notes": "원본 분실로 인한 재발급 요청입니다.",
+    "updatedAt": "2025-04-04T04:19:30.666Z",
+    "staffAssigned": "최직원",
+    "responseDate": "2025-04-04T04:19:30.666Z",
+    "prescriptionImage": "/uploads/prescription_sample.jpg"
+>>>>>>> b9f0456ea9b916259dea87bf012ef00d8822bc40
   },
   {
     "_id": "109",
     "pharmacy": "1",
+<<<<<<< HEAD
     "patientName": "견은지",
     "patientId": "990102-1******",
     "prescriptionDate": "2024-06-15T23:59:49.857Z",
@@ -108,10 +205,22 @@
     "status": "requested",
     "notes": "",
     "updatedAt": "2025-04-05T09:50:05.156Z"
+=======
+    "patientName": "유지현",
+    "patientId": "991217-2******",
+    "prescriptionDate": "2024-06-24T10:39:49.049Z",
+    "requestDate": "2025-03-23T15:24:24.585Z",
+    "status": "not_found",
+    "notes": "약품명도 함께 확인 부탁드립니다.",
+    "updatedAt": "2025-03-24T08:36:21.646Z",
+    "staffAssigned": "김담당",
+    "responseDate": "2025-03-24T08:36:21.646Z"
+>>>>>>> b9f0456ea9b916259dea87bf012ef00d8822bc40
   },
   {
     "_id": "110",
     "pharmacy": "1",
+<<<<<<< HEAD
     "patientName": "윤서영",
     "patientId": "861101-2******",
     "prescriptionDate": "2025-01-16T22:15:22.894Z",
@@ -122,10 +231,20 @@
     "staffAssigned": "이매니저",
     "responseDate": "2025-04-02T01:03:55.199Z",
     "prescriptionImage": "/uploads/prescription_sample.jpg"
+=======
+    "patientName": "전민수",
+    "patientId": "860126-1******",
+    "prescriptionDate": "2025-02-16T06:08:25.411Z",
+    "requestDate": "2025-03-16T07:59:04.715Z",
+    "status": "requested",
+    "notes": "급하게 필요합니다.",
+    "updatedAt": "2025-03-16T08:14:04.715Z"
+>>>>>>> b9f0456ea9b916259dea87bf012ef00d8822bc40
   },
   {
     "_id": "111",
     "pharmacy": "1",
+<<<<<<< HEAD
     "patientName": "류하늘",
     "patientId": "890908-1******",
     "prescriptionDate": "2025-03-06T16:36:30.828Z",
@@ -136,10 +255,20 @@
     "staffAssigned": "박직원",
     "responseDate": "2025-04-01T20:54:04.575Z",
     "prescriptionImage": "/uploads/prescription_sample.jpg"
+=======
+    "patientName": "라윤서",
+    "patientId": "980410-2******",
+    "prescriptionDate": "2024-07-12T22:57:16.051Z",
+    "requestDate": "2025-03-22T16:58:46.978Z",
+    "status": "requested",
+    "notes": "약품명도 함께 확인 부탁드립니다.",
+    "updatedAt": "2025-03-22T17:13:46.978Z"
+>>>>>>> b9f0456ea9b916259dea87bf012ef00d8822bc40
   },
   {
     "_id": "112",
     "pharmacy": "1",
+<<<<<<< HEAD
     "patientName": "하선영",
     "patientId": "840509-1******",
     "prescriptionDate": "2024-10-10T21:49:22.760Z",
@@ -147,10 +276,21 @@
     "status": "requested",
     "notes": "원본 분실로 인한 재발급 요청입니다.",
     "updatedAt": "2025-03-22T13:54:34.787Z"
+=======
+    "patientName": "고은지",
+    "patientId": "990613-1******",
+    "prescriptionDate": "2024-09-23T04:35:32.845Z",
+    "requestDate": "2025-04-01T08:16:46.677Z",
+    "status": "processing",
+    "notes": "급하게 필요합니다.",
+    "updatedAt": "2025-04-01T08:31:46.677Z",
+    "staffAssigned": "정담당자"
+>>>>>>> b9f0456ea9b916259dea87bf012ef00d8822bc40
   },
   {
     "_id": "113",
     "pharmacy": "1",
+<<<<<<< HEAD
     "patientName": "박준영",
     "patientId": "870610-2******",
     "prescriptionDate": "2024-06-26T01:56:53.939Z",
@@ -160,10 +300,23 @@
     "updatedAt": "2025-03-10T13:08:18.713Z",
     "staffAssigned": "최직원",
     "responseDate": "2025-03-10T13:08:18.713Z"
+=======
+    "patientName": "박서연",
+    "patientId": "1040928-1******",
+    "prescriptionDate": "2024-09-10T08:17:30.367Z",
+    "requestDate": "2025-04-01T03:02:16.674Z",
+    "status": "completed",
+    "notes": "보험 청구용으로 필요합니다.",
+    "updatedAt": "2025-04-01T18:55:34.000Z",
+    "staffAssigned": "정담당자",
+    "responseDate": "2025-04-01T18:55:34.000Z",
+    "prescriptionImage": "/uploads/prescription_sample.jpg"
+>>>>>>> b9f0456ea9b916259dea87bf012ef00d8822bc40
   },
   {
     "_id": "114",
     "pharmacy": "1",
+<<<<<<< HEAD
     "patientName": "류하늘",
     "patientId": "831218-1******",
     "prescriptionDate": "2024-09-30T10:12:12.382Z",
@@ -173,11 +326,23 @@
     "updatedAt": "2025-03-31T00:52:41.114Z",
     "staffAssigned": "최직원",
     "responseDate": "2025-03-31T00:52:41.114Z",
+=======
+    "patientName": "강동훈",
+    "patientId": "1010609-2******",
+    "prescriptionDate": "2024-10-09T15:39:29.513Z",
+    "requestDate": "2025-03-13T04:25:58.572Z",
+    "status": "completed",
+    "notes": "",
+    "updatedAt": "2025-03-14T23:47:32.879Z",
+    "staffAssigned": "이매니저",
+    "responseDate": "2025-03-14T23:47:32.879Z",
+>>>>>>> b9f0456ea9b916259dea87bf012ef00d8822bc40
     "prescriptionImage": "/uploads/prescription_sample.jpg"
   },
   {
     "_id": "115",
     "pharmacy": "1",
+<<<<<<< HEAD
     "patientName": "허지원",
     "patientId": "920104-2******",
     "prescriptionDate": "2024-10-26T06:48:36.416Z",
@@ -185,10 +350,23 @@
     "status": "requested",
     "notes": "재발급 처리 필요합니다.",
     "updatedAt": "2025-04-05T04:40:56.333Z"
+=======
+    "patientName": "전민수",
+    "patientId": "840317-1******",
+    "prescriptionDate": "2024-11-16T11:42:32.765Z",
+    "requestDate": "2025-03-14T16:12:51.731Z",
+    "status": "completed",
+    "notes": "진료확인서와 함께 필요합니다.",
+    "updatedAt": "2025-03-15T05:30:23.974Z",
+    "staffAssigned": "정담당자",
+    "responseDate": "2025-03-15T05:30:23.974Z",
+    "prescriptionImage": "/uploads/prescription_sample.jpg"
+>>>>>>> b9f0456ea9b916259dea87bf012ef00d8822bc40
   },
   {
     "_id": "116",
     "pharmacy": "1",
+<<<<<<< HEAD
     "patientName": "전민수",
     "patientId": "1021211-1******",
     "prescriptionDate": "2025-01-27T13:07:31.430Z",
@@ -198,11 +376,23 @@
     "updatedAt": "2025-04-06T22:04:50.428Z",
     "staffAssigned": "박직원",
     "responseDate": "2025-04-06T22:04:50.428Z",
+=======
+    "patientName": "구자영",
+    "patientId": "831109-1******",
+    "prescriptionDate": "2024-12-08T16:01:25.256Z",
+    "requestDate": "2025-03-12T14:43:08.516Z",
+    "status": "completed",
+    "notes": "환자가 처방전 사본을 요청했습니다.",
+    "updatedAt": "2025-03-14T08:21:40.155Z",
+    "staffAssigned": "정담당자",
+    "responseDate": "2025-03-14T08:21:40.155Z",
+>>>>>>> b9f0456ea9b916259dea87bf012ef00d8822bc40
     "prescriptionImage": "/uploads/prescription_sample.jpg"
   },
   {
     "_id": "117",
     "pharmacy": "1",
+<<<<<<< HEAD
     "patientName": "김민수",
     "patientId": "1050817-2******",
     "prescriptionDate": "2024-05-29T15:22:12.767Z",
@@ -210,10 +400,20 @@
     "status": "requested",
     "notes": "처방 내역 확인이 필요합니다.",
     "updatedAt": "2025-04-03T06:40:39.657Z"
+=======
+    "patientName": "권영철",
+    "patientId": "1010319-1******",
+    "prescriptionDate": "2025-02-03T08:08:07.487Z",
+    "requestDate": "2025-03-30T10:43:25.169Z",
+    "status": "requested",
+    "notes": "특정 약품 용량 확인이 필요합니다.",
+    "updatedAt": "2025-03-30T10:58:25.169Z"
+>>>>>>> b9f0456ea9b916259dea87bf012ef00d8822bc40
   },
   {
     "_id": "118",
     "pharmacy": "1",
+<<<<<<< HEAD
     "patientName": "한수민",
     "patientId": "950326-1******",
     "prescriptionDate": "2024-08-12T08:31:12.132Z",
@@ -221,10 +421,22 @@
     "status": "requested",
     "notes": "진료확인서와 함께 필요합니다.",
     "updatedAt": "2025-03-13T09:53:19.295Z"
+=======
+    "patientName": "조민지",
+    "patientId": "830511-2******",
+    "prescriptionDate": "2024-09-20T12:49:41.157Z",
+    "requestDate": "2025-04-08T05:34:30.589Z",
+    "status": "not_found",
+    "notes": "원본 분실로 인한 재발급 요청입니다.",
+    "updatedAt": "2025-04-08T11:57:18.503Z",
+    "staffAssigned": "박직원",
+    "responseDate": "2025-04-08T11:57:18.503Z"
+>>>>>>> b9f0456ea9b916259dea87bf012ef00d8822bc40
   },
   {
     "_id": "119",
     "pharmacy": "1",
+<<<<<<< HEAD
     "patientName": "한수민",
     "patientId": "900916-1******",
     "prescriptionDate": "2025-02-12T11:45:32.387Z",
@@ -232,10 +444,23 @@
     "status": "requested",
     "notes": "원본 분실로 인한 재발급 요청입니다.",
     "updatedAt": "2025-03-28T06:17:58.639Z"
+=======
+    "patientName": "박준영",
+    "patientId": "1040626-1******",
+    "prescriptionDate": "2024-07-19T06:18:20.811Z",
+    "requestDate": "2025-03-13T05:01:07.173Z",
+    "status": "completed",
+    "notes": "재발급 처리 필요합니다.",
+    "updatedAt": "2025-03-14T09:53:43.448Z",
+    "staffAssigned": "이매니저",
+    "responseDate": "2025-03-14T09:53:43.448Z",
+    "prescriptionImage": "/uploads/prescription_sample.jpg"
+>>>>>>> b9f0456ea9b916259dea87bf012ef00d8822bc40
   },
   {
     "_id": "120",
     "pharmacy": "1",
+<<<<<<< HEAD
     "patientName": "신동욱",
     "patientId": "1091128-1******",
     "prescriptionDate": "2024-07-10T00:59:36.387Z",
@@ -244,5 +469,17 @@
     "notes": "원본 분실로 인한 재발급 요청입니다.",
     "updatedAt": "2025-03-25T23:31:21.868Z",
     "staffAssigned": "김담당"
+=======
+    "patientName": "서진호",
+    "patientId": "910917-1******",
+    "prescriptionDate": "2024-07-27T11:01:50.007Z",
+    "requestDate": "2025-04-04T07:34:45.762Z",
+    "status": "completed",
+    "notes": "특정 약품 용량 확인이 필요합니다.",
+    "updatedAt": "2025-04-04T10:20:50.172Z",
+    "staffAssigned": "최직원",
+    "responseDate": "2025-04-04T10:20:50.172Z",
+    "prescriptionImage": "/uploads/prescription_sample.jpg"
+>>>>>>> b9f0456ea9b916259dea87bf012ef00d8822bc40
   }
 ]
