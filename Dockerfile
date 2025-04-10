@@ -16,7 +16,6 @@ COPY . .
 
 # 환경 변수 설정
 ENV NODE_ENV=production
-ENV MONGODB_URI=mongodb://mongo:27017/hansol_pharmacy
 
 # 앱 실행
 CMD ["npm", "start"] 
