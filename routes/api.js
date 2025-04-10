@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Pharmacy = require('../models/Pharmacy');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 // 알림톡 엔드포인트들
 
