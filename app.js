@@ -25,39 +25,45 @@ const app = express();
 // 데이터베이스 연결
 const connectDB = async () => {
   try {
+    console.log('=== MongoDB 연결 시도 ===');
+    
     if (!process.env.MONGODB_URI) {
-      throw new Error('MONGODB_URI 환경 변수가 설정되지 않았습니다.');
+      console.error('MONGODB_URI 환경 변수가 설정되지 않았습니다!');
+      console.error('Railway 대시보드에서 환경 변수를 확인해주세요.');
+      process.exit(1);
     }
 
-    console.log('MongoDB 연결 시도 중...');
     console.log('MongoDB URI 확인:', process.env.MONGODB_URI.substring(0, 20) + '...');
+    console.log('연결 시도 중...');
 
     await mongoose.connect(process.env.MONGODB_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-      serverSelectionTimeoutMS: 5000 // 5초 후 타임아웃
+      serverSelectionTimeoutMS: 10000, // 10초 타임아웃
+      heartbeatFrequencyMS: 2000 // 하트비트 주기
     });
 
     console.log('MongoDB 연결 성공!');
+    
+    // 연결 이벤트 리스너 추가
+    mongoose.connection.on('error', err => {
+      console.error('MongoDB 에러 발생:', err);
+    });
+
+    mongoose.connection.on('disconnected', () => {
+      console.log('MongoDB 연결이 끊어졌습니다. 재연결 시도...');
+      setTimeout(connectDB, 5000); // 5초 후 재연결 시도
+    });
+
   } catch (err) {
     console.error('MongoDB 연결 실패:', err.message);
     console.error('상세 에러:', err);
-    process.exit(1); // 연결 실패 시 프로세스 종료
+    process.exit(1);
   }
 };
 
 // 데이터베이스 연결 실행
 connectDB();
-
-// MongoDB 연결 이벤트 리스너
-mongoose.connection.on('error', err => {
-  console.error('MongoDB 에러 발생:', err);
-});
-
-mongoose.connection.on('disconnected', () => {
-  console.log('MongoDB 연결이 끊어졌습니다. 재연결 시도 중...');
-  connectDB();
-});
 
 // 뷰 엔진 설정
 app.set('views', path.join(__dirname, 'views'));
