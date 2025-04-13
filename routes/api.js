@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const Pharmacy = require('../models/Pharmacy');
+const bcrypt = require('bcryptjs');
 
 // 알림톡 엔드포인트들
 
@@ -103,6 +105,74 @@ router.post('/alimtalk/webhook', (req, res) => {
     }, 1000);
   } else {
     res.status(400).json({ message: '지원하지 않는 응답 유형입니다' });
+  }
+});
+
+// 약국 회원가입 API 엔드포인트
+router.post('/pharmacy/register', async (req, res) => {
+  try {
+    const { 
+      pharmacyName, 
+      licenseNumber, 
+      address, 
+      addressDetail, 
+      phoneNumber, 
+      email, 
+      username, 
+      password 
+    } = req.body;
+
+    // 필수 필드 검증
+    if (!pharmacyName || !licenseNumber || !address || !phoneNumber || !email || !username || !password) {
+      return res.status(400).json({
+        success: false,
+        message: '필수 항목을 모두 입력해주세요.'
+      });
+    }
+
+    // 사용자명 중복 확인
+    const existingPharmacy = await Pharmacy.findOne({ 
+      $or: [
+        { email: email },
+        { regNumber: licenseNumber }
+      ]
+    });
+
+    if (existingPharmacy) {
+      return res.status(400).json({
+        success: false,
+        message: '이미 등록된 약국 정보가 있습니다. 이메일 또는 등록번호를 확인해주세요.'
+      });
+    }
+
+    // 비밀번호 해싱
+    const hashedPassword = await bcrypt.hash(password, 10);
+    
+    // 새 약국 정보 생성
+    const fullAddress = addressDetail ? `${address} ${addressDetail}` : address;
+    
+    const newPharmacy = new Pharmacy({
+      name: pharmacyName,
+      address: fullAddress,
+      contactPerson: username,
+      phoneNumber: phoneNumber,
+      email: email,
+      password: hashedPassword,
+      regNumber: licenseNumber
+    });
+
+    await newPharmacy.save();
+
+    res.status(201).json({
+      success: true,
+      message: '회원가입이 완료되었습니다.'
+    });
+  } catch (error) {
+    console.error('약국 회원가입 오류:', error);
+    res.status(500).json({
+      success: false,
+      message: '회원가입 처리 중 오류가 발생했습니다.'
+    });
   }
 });
 

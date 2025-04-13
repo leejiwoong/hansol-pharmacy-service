@@ -23,12 +23,47 @@ const apiRouter = require('./routes/api');
 const app = express();
 
 // 데이터베이스 연결
-mongoose.connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})
-.then(() => console.log('MongoDB에 연결되었습니다.'))
-.catch(err => console.error('MongoDB 연결 에러:', err));
+const connectDB = async () => {
+  try {
+    console.log('=== MongoDB 연결 시도 ===');
+    
+    if (!process.env.MONGODB_URI) {
+      console.error('MONGODB_URI 환경 변수가 설정되지 않았습니다!');
+      console.error('Railway 대시보드에서 환경 변수를 확인해주세요.');
+      process.exit(1);
+    }
+
+    console.log('MongoDB URI 확인:', process.env.MONGODB_URI.substring(0, 20) + '...');
+    console.log('연결 시도 중...');
+
+    await mongoose.connect(process.env.MONGODB_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      serverSelectionTimeoutMS: 10000, // 10초 타임아웃
+      heartbeatFrequencyMS: 2000 // 하트비트 주기
+    });
+
+    console.log('MongoDB 연결 성공!');
+    
+    // 연결 이벤트 리스너 추가
+    mongoose.connection.on('error', err => {
+      console.error('MongoDB 에러 발생:', err);
+    });
+
+    mongoose.connection.on('disconnected', () => {
+      console.log('MongoDB 연결이 끊어졌습니다. 재연결 시도...');
+      setTimeout(connectDB, 5000); // 5초 후 재연결 시도
+    });
+
+  } catch (err) {
+    console.error('MongoDB 연결 실패:', err.message);
+    console.error('상세 에러:', err);
+    process.exit(1);
+  }
+};
+
+// 데이터베이스 연결 실행
+connectDB();
 
 // 뷰 엔진 설정
 app.set('views', path.join(__dirname, 'views'));
@@ -69,17 +104,45 @@ app.use((req, res, next) => {
 
 // 에러 핸들러
 app.use((err, req, res, next) => {
-  console.error(err);
-  res.status(err.status || 500).render('error', {
-    message: err.message,
+  console.error('에러 발생:', err);
+  console.error('에러 메시지:', err.message);
+  console.error('에러 스택:', err.stack);
+  
+  res.status(err.status || 500).json({
+    success: false,
+    message: process.env.NODE_ENV === 'development' ? err.message : '서버 에러가 발생했습니다.',
     error: process.env.NODE_ENV === 'development' ? err : {}
   });
 });
 
 // 서버 시작
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`서버가 포트 ${PORT}에서 실행 중입니다.`);
+})
+.on('error', (err) => {
+  console.error('서버 시작 실패:', err);
+  process.exit(1);
+});
+
+// 프로세스 종료 처리
+process.on('SIGTERM', () => {
+  console.log('SIGTERM 신호를 받았습니다. 서버를 종료합니다.');
+  server.close(() => {
+    console.log('서버가 종료되었습니다.');
+    mongoose.connection.close(false, () => {
+      console.log('MongoDB 연결이 종료되었습니다.');
+      process.exit(0);
+    });
+  });
+});
+
+process.on('uncaughtException', (err) => {
+  console.error('처리되지 않은 예외 발생:', err);
+  server.close(() => {
+    console.log('서버를 종료합니다.');
+    process.exit(1);
+  });
 });
 
 module.exports = app;

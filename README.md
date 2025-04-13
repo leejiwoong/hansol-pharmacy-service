@@ -141,3 +141,39 @@ hansol-pharmacy-service/
 ## 라이센스
 
 이 프로젝트는 한솔제약헬스케어의 내부 사용을 위한 것으로, 무단 배포 및 사용을 금지합니다.
+
+## 자동 배포 설정 방법
+
+이 프로젝트는 GitHub Actions를 사용하여 Railway에 자동 배포되도록 설정되어 있습니다.
+
+### 사전 요구사항
+
+1. GitHub 계정 및 레포지토리
+2. Railway 계정 및 프로젝트
+
+### 설정 단계
+
+1. Railway 토큰 발급하기
+   - Railway 대시보드에서 상단 오른쪽 프로필 아이콘 클릭
+   - 'Developer' 메뉴 선택
+   - 'New Token' 클릭하여 새 토큰 발급
+
+2. GitHub 레포지토리 시크릿 설정
+   - GitHub 레포지토리의 'Settings' 탭으로 이동
+   - 왼쪽 사이드바에서 'Secrets and variables' > 'Actions' 선택
+   - 'New repository secret' 버튼 클릭
+   - 이름: `RAILWAY_TOKEN`, 값: 발급받은 Railway 토큰 입력 후 저장
+
+3. 배포 과정
+   - `main` 브랜치에 코드를 푸시하면 GitHub Actions 워크플로우가 자동으로 실행됨
+   - 워크플로우는 다음 단계를 수행:
+     1. 코드 체크아웃
+     2. Node.js 환경 설정
+     3. 의존성 설치
+     4. 테스트 실행
+     5. Railway CLI 설치
+     6. Railway 배포
+
+4. 배포 상태 확인
+   - GitHub 레포지토리의 'Actions' 탭에서 워크플로우 실행 상태 확인 가능
+   - Railway 대시보드에서 배포된 애플리케이션 상태 확인 가능
